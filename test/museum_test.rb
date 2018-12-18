@@ -59,4 +59,15 @@ class MuseumTest < Minitest::Test
 
     assert_equal [], dmns.patrons
   end
+
+  def test_it_can_admit_patrons
+    dmns = Museum.new("Denver Museum of Nature and Science")
+    bob = Patron.new("Bob", 20)
+    sally = Patron.new("Sally", 20)
+
+    dmns.admit(bob)
+    dmns.admit(sally)
+
+    assert_equal [bob, sally], dmns.patrons
+  end
 end
