@@ -1,6 +1,6 @@
 class Exhibit
   attr_reader :name,
-                  :cost
+              :cost
 
   def initialize(name, cost)
     @name = name
