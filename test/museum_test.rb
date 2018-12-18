@@ -84,6 +84,8 @@ class MuseumTest < Minitest::Test
     bob.add_interest("Gems and Minerals")
     sally = Patron.new("Sally", 20)
     sally.add_interest("Dead Sea Scrolls")
+    dmns.admit(bob)
+    dmns.admit(sally)
 
     assert_equal ({
                     gems_and_minerals => [bob],
