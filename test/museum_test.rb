@@ -157,4 +157,25 @@ class MuseumTest < Minitest::Test
       imax => [sally]
       }), dmns.patrons_of_exhibits
   end
+
+  def test_it_makes_money_off_of_attended_exhibits
+    dmns = Museum.new("Denver Museum of Nature and Science")
+    gems_and_minerals = Exhibit.new("Gems and Minerals", 0)
+    dead_sea_scrolls = Exhibit.new("Dead Sea Scrolls", 10)
+    imax = Exhibit.new("IMAX", 15)
+    dmns.add_exhibit(gems_and_minerals)
+    dmns.add_exhibit(dead_sea_scrolls)
+    dmns.add_exhibit(imax)
+    bob = Patron.new("Bob", 10)
+    bob.add_interest("Dead Sea Scrolls")
+    bob.add_interest("Gems and Minerals")
+    sally = Patron.new("Sally", 20)
+    sally.add_interest("IMAX")
+    sally.add_interest("Gems and Minerals")
+
+    dmns.admit(bob)
+    dmns.admit(sally)
+
+    assert_equal 25, dmns.revenue
+  end
 end
