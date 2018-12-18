@@ -41,8 +41,8 @@ class MuseumTest < Minitest::Test
     gems_and_minerals = Exhibit.new("Gems and Minerals", 0)
     dead_sea_scrolls = Exhibit.new("Dead Sea Scrolls", 10)
     imax = Exhibit.new("IMAX", 15)
-    dmns.add_exhibit(gems_and_minerals)    
-    dmns.add_exhibit(dead_sea_scrolls)    
+    dmns.add_exhibit(gems_and_minerals)
+    dmns.add_exhibit(dead_sea_scrolls)
     dmns.add_exhibit(imax)
     bob = Patron.new("Bob", 20)
     bob.add_interest("Dead Sea Scrolls")
@@ -52,5 +52,11 @@ class MuseumTest < Minitest::Test
 
     assert_equal [dead_sea_scrolls, gems_and_minerals], dmns.recommend_exhibits(bob)
     assert_equal [imax], dmns.recommend_exhibits(sally)
+  end
+
+  def test_it_starts_with_no_patrons
+    dmns = Museum.new("Denver Museum of Nature and Science")
+
+    assert_equal [], dmns.patrons
   end
 end
