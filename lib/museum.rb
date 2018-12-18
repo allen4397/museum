@@ -1,16 +1,19 @@
 class Museum
   attr_reader :name,
               :exhibits,
-              :patrons
+              :patrons,
+              :patrons_of_exhibits
 
   def initialize(name)
     @name = name
     @exhibits = []
     @patrons = []
+    @patrons_of_exhibits = {}
   end
 
   def add_exhibit(exhibit)
     @exhibits << exhibit
+    @patrons_of_exhibits[exhibit] = []
   end
 
   def recommend_exhibits(patron)
@@ -35,12 +38,10 @@ class Museum
     exhibits_interested_in.each do |exhibit|
       if exhibit.cost <= patron.spending_money
         patron.spending_money -= exhibit.cost
+        patrons_of_exhibits[exhibit] << patron
       end
     end
   end
-
-  def patrons_of_exhibits
-    
 
   def patrons_by_exhibit_interest
     patrons_by_exhibit = {}
